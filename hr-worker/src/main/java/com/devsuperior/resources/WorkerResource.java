@@ -2,6 +2,8 @@ package com.devsuperior.resources;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devsuperior.entities.Worker;
 import com.devsuperior.repositories.WorkerRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping(value = "/workers")
@@ -35,7 +35,10 @@ public class WorkerResource {
 	}
 
 	@GetMapping(value="/{id}")
-	public ResponseEntity<Worker> findById(@PathVariable Long id){
+	public ResponseEntity<Worker> findById(@PathVariable Long id) throws InterruptedException{
+		
+//		Thread.sleep(3000L);
+//		throw new RuntimeException("fufu");
 		
 		logger.info("PORT = "+env.getProperty("local.server.port"));
 
